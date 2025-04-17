@@ -23,7 +23,7 @@ export default function AppSidebar({ items }: { items: SidebarItem[] }) {
 			<SidebarContent className='flex flex-col justify-between h-full'>
 				<div>
 					<SidebarGroup className='space-y-5'>
-						<SidebarGroupLabel className='px-0'>
+						<SidebarGroupLabel className='pl-0 '>
 							<div className='w-10 h-10 relative'>
 								<Image
 									src='/images/logo.png'
@@ -32,7 +32,7 @@ export default function AppSidebar({ items }: { items: SidebarItem[] }) {
 									layout='fill'
 								/>
 							</div>
-							<h3 className='text-[#050a44]'>TMS</h3>
+							<h3 className='text-[#1CAFF2] text-base'>TMS</h3>
 						</SidebarGroupLabel>
 						<SidebarGroupContent>
 							<SidebarMenu className='space-y-3'>

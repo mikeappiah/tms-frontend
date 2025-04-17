@@ -23,7 +23,7 @@ export default function DashboardLayout({
 		<SidebarProvider>
 			<AppSidebar items={items} />
 			<main>
-				<SidebarTrigger className='text-[#050a44] hover:bg-transparent hover:text-[#1CAFF2]' />
+				<SidebarTrigger className='hover:bg-transparent hover:text-[#1CAFF2]' />
 				{children}
 			</main>
 		</SidebarProvider>
