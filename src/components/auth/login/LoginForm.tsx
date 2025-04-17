@@ -4,9 +4,9 @@ import FormGroup from './FormGroup';
 
 export default function LoginForm() {
 	const inputClasses =
-		'rounded-[1px] shadow-none px-3 py-2 text-secondary focus-visible:border-0 focus-visible:ring-primary/50 focus-visible:ring-2';
+		'rounded-[1px] shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#050a44] focus-visible:ring-2';
 
-	const buttonClasses = 'w-full bg-primary rounded-[1px] cursor-pointer';
+	const buttonClasses = 'w-full bg-[#050a44] rounded-[1px] cursor-pointer';
 
 	return (
 		<form className='space-y-5'>

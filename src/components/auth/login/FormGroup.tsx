@@ -12,7 +12,7 @@ export default function FormGroup({
 	htmlFor,
 	children
 }: FormGroupProps) {
-	const labelClasses = 'text-sm text-primary/75 font-medium';
+	const labelClasses = 'text-sm text-[#050a44]/75 font-medium';
 	return (
 		<div className='space-y-2'>
 			<Label htmlFor={htmlFor} className={labelClasses}>
