@@ -1,22 +1,23 @@
-interface TaskStatusBadgeProps {
-	status: string;
-	count: number;
-	color: string;
-	Icon: React.ComponentType;
-}
+import { TaskStatusBadgeProps } from '@/interfaces/tasks';
+import { RiHourglass2Fill } from 'react-icons/ri';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 export default function TaskStatusBadge({
 	status,
-	count,
-	Icon,
-	color
+	count
 }: TaskStatusBadgeProps) {
+	const statusColor = status === 'completed' ? 'bg-[#2FBA56]' : 'bg-[#5153FF]';
+
 	return (
 		<div
-			className={`text-[#fdfafc] bg-[${color}] flex items-center space-x-4 rounded-3xl py-1 px-2 w-max`}
+			className={`text-[#fdfafc] ${statusColor} flex items-center space-x-4 rounded-3xl py-1 px-2 w-max`}
 		>
 			<div className='text-2xl'>
-				<Icon />
+				{status === 'open' ? (
+					<RiHourglass2Fill />
+				) : (
+					<IoMdCheckmarkCircleOutline />
+				)}
 			</div>
 			<span className='capitalize text-sm'>{status}</span>
 			<div
