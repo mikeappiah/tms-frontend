@@ -1,4 +1,8 @@
+'use client';
+
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+
 import {
 	Sidebar,
 	SidebarContent,
@@ -18,6 +22,8 @@ interface SidebarItem {
 }
 
 export default function AppSidebar({ items }: { items: SidebarItem[] }) {
+	const pathname = usePathname();
+
 	return (
 		<Sidebar>
 			<SidebarContent className='flex flex-col justify-between h-full'>
@@ -32,7 +38,7 @@ export default function AppSidebar({ items }: { items: SidebarItem[] }) {
 									layout='fill'
 								/>
 							</div>
-							<h3 className='text-[#1CAFF2] text-base'>TMS</h3>
+							<h3 className='text-[#5153FF] text-base'>TMS</h3>
 						</SidebarGroupLabel>
 						<SidebarGroupContent>
 							<SidebarMenu className='space-y-3'>
@@ -40,7 +46,10 @@ export default function AppSidebar({ items }: { items: SidebarItem[] }) {
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton
 											asChild
-											className='text-[#7A7B88] hover:text-[#1CAFF2]'
+											className={`text-[#7A7B88] hover:text-[#5153FF] ${
+												pathname === item.url &&
+												'text-[#5153FF] bg-sidebar-accent'
+											} `}
 										>
 											<a href={item.url} className='space-x-2'>
 												<item.icon />

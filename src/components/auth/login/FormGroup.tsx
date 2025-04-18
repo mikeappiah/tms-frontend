@@ -1,3 +1,5 @@
+'use client';
+
 import { Label } from '@/components/ui/label';
 import { ReactNode } from 'react';
 
@@ -12,7 +14,7 @@ export default function FormGroup({
 	htmlFor,
 	children
 }: FormGroupProps) {
-	const labelClasses = 'text-sm text-[#1CAFF2]/75 font-medium';
+	const labelClasses = 'text-sm text-[#5153FF]/75 font-medium';
 	return (
 		<div className='space-y-2'>
 			<Label htmlFor={htmlFor} className={labelClasses}>
