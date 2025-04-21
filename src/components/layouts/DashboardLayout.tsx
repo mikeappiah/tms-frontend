@@ -22,9 +22,9 @@ export default function DashboardLayout({
   return (
     <SidebarProvider>
       <AppSidebar items={items} />
-      <main className="w-full">
-        <SidebarTrigger className="hover:bg-transparent hover:text-[#1CAFF2]" />
-        <div className="px-5">{children}</div>
+      <main className='w-full'>
+        <SidebarTrigger className='hover:bg-transparent hover:text-[#5153FF]' />
+        <div className='px-5'>{children}</div>
       </main>
     </SidebarProvider>
   );
