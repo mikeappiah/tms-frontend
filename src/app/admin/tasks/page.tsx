@@ -10,6 +10,7 @@ import TaskCard from '@/components/admin/tasks/TaskCard';
 import TaskListView from '@/components/admin/tasks/TaskListView';
 import TaskViewToggle from '@/components/admin/tasks/TaskViewToggle';
 import CreateTaskDialog from '@/components/admin/tasks/CreateTaskDialog';
+import { PageHeader } from '@/components/header';
 
 export default function Tasks() {
 	const [currentView, setCurrentView] = useState<'board' | 'list'>('board');
@@ -27,7 +28,10 @@ export default function Tasks() {
 		<div className='py-10'>
 			<div>
 				<div className='flex justify-between items-center mb-10 w-full'>
-					<h2 className='text-3xl text-[#232526] font-medium'>Task Board</h2>
+					<PageHeader
+						title='Tasks'
+						description='Create, manage, and track team tasks.'
+					/>
 					<CreateTaskDialog>
 						<Button className='bg-yellow-500 hover:bg-yellow-400 cursor-pointer rounded-[2px]'>
 							<IoMdAdd />

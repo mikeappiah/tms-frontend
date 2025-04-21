@@ -14,10 +14,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import TaskForm from './TaskForm';
 
 const inputClasses =
-	'rounded-[1px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
+	'rounded-[2px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
 
 const buttonClasses =
-	'bg-[#5153FF] hover:bg-[#4649db] rounded-[1px] cursor-pointer';
+	'bg-[#5153FF] hover:bg-[#4649db] rounded-[2px] cursor-pointer';
 
 export default function CreateTaskDialog({
 	children
