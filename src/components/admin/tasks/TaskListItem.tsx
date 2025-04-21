@@ -1,7 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { FaRegCommentDots } from 'react-icons/fa';
 import { Badge } from '@/components/ui/badge';
+import EditTaskDialog from './EditTaskDialog';
 import { RiEditFill } from 'react-icons/ri';
+import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 import { Task } from '@/interfaces/tasks';
 
@@ -22,7 +24,10 @@ export default function TaskListItem({ task }: { task: Task }) {
 					<h3 className='capitalize font-medium text-[#232526] group-hover:text-white'>
 						{task.name}
 					</h3>
-					<RiEditFill className='text-[#7A7B88] text-xl cursor-pointer group-hover:text-white' />
+					<EditTaskDialog>
+						<RiEditFill className='text-[#7A7B88] text-xl cursor-pointer group-hover:text-white' />
+					</EditTaskDialog>
+					<RiDeleteBin4Fill className='text-[#7A7B88] text-xl cursor-pointer group-hover:text-white' />
 				</div>
 
 				<p className='text-sm text-[#7A7B88] group-hover:text-white'>
