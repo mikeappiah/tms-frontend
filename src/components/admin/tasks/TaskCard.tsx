@@ -6,14 +6,22 @@ import EditTaskDialog from '@/components/admin/tasks/EditTaskDialog';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
 
 export default function TaskCard({ task }: { task: Task }) {
-	const statusColor = task.status === 'completed' ? '#2FBA56' : '#5153FF';
+	let statusColor;
 
-	// const statusColor =
-	// 	task.status === 'completed' ? `hover:bg-[#2FBA56]` : `hover:bg-[#5153FF]`;
+	switch (task.status) {
+		case 'open':
+			statusColor = 'hover:bg-[#5153FF]';
+			break;
+		case 'completed':
+			statusColor = 'hover:bg-[#2FBA56]';
+			break;
+		case 'overdue':
+			statusColor = 'hover:bg-[#d32f2f]';
+	}
 
 	return (
 		<div
-			className={`bg-white group hover:bg-[${statusColor}] transition-all p-5 rounded-[5px] space-y-4 border border-[#EFEFEF]`}
+			className={`bg-white group ${statusColor} transition-all p-5 rounded-[5px] space-y-4 border border-[#EFEFEF]`}
 		>
 			<div className='space-y-3'>
 				<div className='flex items-center space-x-2'>

@@ -19,10 +19,11 @@ export default function Tasks() {
 		setCurrentView(view);
 	};
 
+	const openTasks = tasksData.filter((task) => task.status === 'open');
 	const completedTasks = tasksData.filter(
 		(task) => task.status === 'completed'
 	);
-	const openTasks = tasksData.filter((task) => task.status === 'open');
+	const overdueTasks = tasksData.filter((task) => task.status === 'overdue');
 
 	return (
 		<div>
@@ -46,7 +47,7 @@ export default function Tasks() {
 					/>
 				</div>
 				{currentView === 'board' && (
-					<div className='lg:flex lg:space-x-10 space-y-20 lg:space-y-0'>
+					<div className='lg:flex lg:space-x-3 space-y-10 lg:space-y-0'>
 						<div className='space-y-2'>
 							<TaskStatusBadge status='open' count={openTasks.length} />
 							<div className='space-y-5'>
@@ -62,6 +63,14 @@ export default function Tasks() {
 							/>
 							<div className='space-y-5'>
 								{completedTasks.map((task) => (
+									<TaskCard key={task.id} task={task} />
+								))}
+							</div>
+						</div>
+						<div className='space-y-2'>
+							<TaskStatusBadge status='overdue' count={overdueTasks.length} />
+							<div className='space-y-5'>
+								{overdueTasks.map((task) => (
 									<TaskCard key={task.id} task={task} />
 								))}
 							</div>

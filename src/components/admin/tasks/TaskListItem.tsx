@@ -8,7 +8,18 @@ import { RiDeleteBin4Fill } from 'react-icons/ri';
 import { Task } from '@/interfaces/tasks';
 
 export default function TaskListItem({ task }: { task: Task }) {
-	const statusColor = task.status === 'completed' ? '#2FBA56' : '#5153FF';
+	let statusColor;
+
+	switch (task.status) {
+		case 'open':
+			statusColor = '#5153FF';
+			break;
+		case 'completed':
+			statusColor = '#2FBA56';
+			break;
+		case 'overdue':
+			statusColor = '#d32f2f';
+	}
 
 	return (
 		<div

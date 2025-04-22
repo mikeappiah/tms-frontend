@@ -31,6 +31,21 @@ const tasksData: Task[] = [
 		},
 		completed_at: new Date().getTime(),
 		user_comment: []
+	},
+	{
+		id: 'task-3',
+		name: 'Begin backend design',
+		description:
+			'Lorem Ipsum is simply dummy text of the printing and typesetting industry...',
+		status: 'overdue',
+		deadline: new Date('2025-04-25'),
+		responsibility: {
+			userId: 'user-2',
+			name: 'Emmanuel Asidigbe',
+			avatar: 'user2.png'
+		},
+		completed_at: new Date().getTime(),
+		user_comment: []
 	}
 ];
 
