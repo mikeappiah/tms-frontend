@@ -46,7 +46,7 @@ export default function AppSidebar({ items }: { items: SidebarItem[] }) {
 									<SidebarMenuItem key={item.title}>
 										<SidebarMenuButton
 											asChild
-											className={`text-[#7A7B88] hover:text-[#5153FF] ${
+											className={`text-[#7A7B88] active:text-[#5153FF] hover:text-[#5153FF] ${
 												pathname === item.url &&
 												'text-[#5153FF] bg-sidebar-accent'
 											} `}

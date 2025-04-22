@@ -25,7 +25,7 @@ export default function Tasks() {
 	const openTasks = tasksData.filter((task) => task.status === 'open');
 
 	return (
-		<div className='py-10'>
+		<div>
 			<div>
 				<div className='flex justify-between items-center mb-10 w-full'>
 					<PageHeader

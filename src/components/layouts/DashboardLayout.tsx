@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import AppSidebar from "@/components/navigation/AppSidebar";
-import { IconType } from "react-icons";
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import AppSidebar from '@/components/navigation/AppSidebar';
+import { IconType } from 'react-icons';
 
 type SidebarItem = {
-  title: string;
-  url: string;
-  icon: IconType;
+	title: string;
+	url: string;
+	icon: IconType;
 };
 
 interface DashboardLayoutProps {
-  children: React.ReactNode;
-  items: SidebarItem[];
+	children: React.ReactNode;
+	items: SidebarItem[];
 }
 
 export default function DashboardLayout({
-  children,
-  items,
+	children,
+	items
 }: Readonly<DashboardLayoutProps>) {
-  return (
-    <SidebarProvider>
-      <AppSidebar items={items} />
-      <main className='w-full'>
-        <SidebarTrigger className='hover:bg-transparent hover:text-[#5153FF]' />
-        <div className='px-5'>{children}</div>
-      </main>
-    </SidebarProvider>
-  );
+	return (
+		<SidebarProvider>
+			<AppSidebar items={items} />
+			<main className='w-full'>
+				<SidebarTrigger className='hover:bg-transparent hover:text-[#5153FF]' />
+				<div className='px-5 py-10'>{children}</div>
+			</main>
+		</SidebarProvider>
+	);
 }
