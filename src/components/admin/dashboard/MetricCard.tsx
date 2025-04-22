@@ -15,7 +15,7 @@ export default function MetricCard({
 	iconBg: string;
 }>) {
 	return (
-		<Card className={`${bgColor} text-white rounded-[10px]`}>
+		<Card className={`${bgColor} text-white rounded-[8px]`}>
 			<CardHeader className='flex flex-row items-center justify-between pb-2'>
 				<CardTitle className='text-xl'>{title}</CardTitle>
 				<div className={cn('p-2 rounded-full', iconBg)}>{icon}</div>

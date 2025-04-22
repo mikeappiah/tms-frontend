@@ -33,7 +33,7 @@ import chartData from '@/data/chartData';
 
 export default function TaskBarChart() {
 	return (
-		<Card className='lg:col-span-3 bg-white shadow-none'>
+		<Card className='lg:col-span-3 bg-white rounded-[8px] shadow-none border-0'>
 			<CardHeader>
 				<CardTitle className='text-[#232526] text-xl'>
 					Tasks Overview Chart

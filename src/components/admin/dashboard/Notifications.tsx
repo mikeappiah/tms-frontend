@@ -5,7 +5,7 @@ import NotificationItem from './NotificationItem';
 
 export default function Notifications() {
 	return (
-		<Card className='bg-white border border-gray-200 shadow-sm lg:col-span-2 relative'>
+		<Card className='bg-white rounded-[8px] shadow-none border-0 lg:col-span-2 relative'>
 			<CardHeader>
 				<CardTitle className='text-[#232526] text-xl'>Notifications</CardTitle>
 			</CardHeader>
