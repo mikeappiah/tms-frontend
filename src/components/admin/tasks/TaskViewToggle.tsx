@@ -14,7 +14,7 @@ export default function TaskViewToggle({
 	currentView
 }: TaskViewToggleProps) {
 	const tabClasses =
-		'gap-2 shadow-none! cursor-pointer text-red-500 data-[state=active]:bg-red-500 data-[state=active]:text-white rounded-[5px]';
+		'gap-2 shadow-none! cursor-pointer text-[#5153FF] data-[state=active]:bg-[#5153FF] data-[state=active]:text-white rounded-[1px]';
 	return (
 		<Tabs defaultValue={currentView} className='w-max'>
 			<TabsList className='bg-[#F7F8FA]'>

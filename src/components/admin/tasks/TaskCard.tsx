@@ -4,6 +4,8 @@ import { RiEditFill } from 'react-icons/ri';
 import { Task } from '@/interfaces/tasks';
 import EditTaskDialog from '@/components/admin/tasks/EditTaskDialog';
 import { RiDeleteBin4Fill } from 'react-icons/ri';
+import formatDate from '@/utils/formatDate';
+import getInitials from '@/utils/getInitials';
 
 export default function TaskCard({ task }: { task: Task }) {
 	let statusColor;
@@ -40,11 +42,7 @@ export default function TaskCard({ task }: { task: Task }) {
 			</div>
 			<div>
 				<span className='text-sm font-medium text-[#7A7B88] group-hover:text-white'>
-					{task.deadline.toLocaleDateString('en-US', {
-						year: 'numeric',
-						month: 'long',
-						day: 'numeric'
-					})}
+					{formatDate(task.deadline)}
 				</span>
 			</div>
 			<div className='flex items-center justify-between'>
@@ -56,11 +54,7 @@ export default function TaskCard({ task }: { task: Task }) {
 							className={`bg-[${statusColor}] group-hover:bg-white rounded-full`}
 						/>
 						<AvatarFallback>
-							{task.responsibility.name
-								.split(' ')
-								.slice(0, 2)
-								.map((part) => part[0])
-								.join('')}
+							{getInitials(task.responsibility.name)}
 						</AvatarFallback>
 					</Avatar>
 				</div>

@@ -13,8 +13,6 @@ import {
 	DropdownMenu,
 	DropdownMenuContent,
 	DropdownMenuItem,
-	// DropdownMenuLabel,
-	// DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
 import {
@@ -118,11 +116,7 @@ export function MembersTable() {
 											</Button>
 										</DropdownMenuTrigger>
 										<DropdownMenuContent align='end'>
-											{/* <DropdownMenuLabel>Actions</DropdownMenuLabel>
-											<DropdownMenuSeparator /> */}
-											{/* <DropdownMenuItem>View details</DropdownMenuItem>
 											<DropdownMenuItem>Edit member</DropdownMenuItem>
-											<DropdownMenuSeparator /> */}
 											<DropdownMenuItem className='text-destructive'>
 												Delete member
 											</DropdownMenuItem>

@@ -34,7 +34,7 @@ export default function Tasks() {
 						description='Create, manage, and track team tasks.'
 					/>
 					<CreateTaskDialog>
-						<Button className='bg-yellow-500 hover:bg-yellow-400 cursor-pointer rounded-[2px]'>
+						<Button className='bg-[#5153FF] hover:bg-[#5153FF]/80 cursor-pointer rounded-[2px]'>
 							<IoMdAdd />
 							Add new task
 						</Button>
