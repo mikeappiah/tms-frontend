@@ -6,8 +6,7 @@ import {
 	ChevronRight,
 	UserPlus
 } from 'lucide-react';
-import { format } from 'date-fns';
-
+import formatDate from '@/utils/formatDate';
 import { Button } from '@/components/ui/button';
 import {
 	DropdownMenu,
@@ -105,7 +104,7 @@ export function MembersTable() {
 									{member.email}
 								</TableCell>
 								<TableCell className='hidden md:table-cell'>
-									{format(member.createdAt, 'MMM d, yyyy')}
+									{formatDate(member.createdAt)}
 								</TableCell>
 								<TableCell className='text-right'>
 									<DropdownMenu>
