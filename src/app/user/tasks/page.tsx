@@ -1,12 +1,12 @@
 'use client';
 
-import TaskTable from '@/components/user/task/TaskTable';
 import tasksData from '@/data/tasksData';
+import TasksTable from './TasksTable';
 
 export default function Page() {
 	return (
 		<main className='h-full'>
-			<TaskTable tasks={tasksData} />
+			<TasksTable tasks={tasksData} />
 		</main>
 	);
 }

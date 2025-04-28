@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import TaskTableHeader from '@/components/TaskTableHeader';
-import TaskTableRow from './TaskTableRow';
-import TaskTablePagination from '../../TaskTablePagination';
+import TaskTableRow from '@/components/user/task/TaskTableRow';
+import TaskTablePagination from '@/components/TaskTablePagination';
 import { Task } from '@/interfaces/tasks';
 import { TbTargetArrow } from 'react-icons/tb';
 import { BsListNested } from 'react-icons/bs';
@@ -11,7 +11,7 @@ import { IoCalendarNumberSharp } from 'react-icons/io5';
 import { GrStatusDisabled } from 'react-icons/gr';
 import { GrAction } from 'react-icons/gr';
 
-export default function TaskTable({ tasks: initialTasks }: { tasks: Task[] }) {
+export default function TasksTable({ tasks: initialTasks }: { tasks: Task[] }) {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [tasks, setTasks] = useState<Task[]>(initialTasks);
 	const tasksPerPage = 5;
