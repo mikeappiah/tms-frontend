@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import tasksData from '@/data/tasksData';
+// import axios from 'axios';
 
 import { Button } from '@/components/ui/button';
 import { IoMdAdd } from 'react-icons/io';
@@ -18,6 +19,8 @@ export default function Tasks() {
 	const handleViewChange = (view: 'board' | 'list') => {
 		setCurrentView(view);
 	};
+
+	useEffect(() => {}, []);
 
 	const openTasks = tasksData.filter((task) => task.status === 'open');
 	const completedTasks = tasksData.filter(

@@ -11,14 +11,20 @@ import { IoCalendarNumberSharp } from 'react-icons/io5';
 import { GrStatusDisabled } from 'react-icons/gr';
 import { GrAction } from 'react-icons/gr';
 
-export default function TasksTable({ tasks: initialTasks }: { tasks: Task[] }) {
+export default function TasksTable({
+	tasks
+}: // setTasks
+{
+	tasks: Task[];
+	// setTasks: () => void;
+}) {
 	const [currentPage, setCurrentPage] = useState(1);
-	const [tasks, setTasks] = useState<Task[]>(initialTasks);
 	const tasksPerPage = 5;
 
 	const startIndex = (currentPage - 1) * tasksPerPage;
 	const endIndex = startIndex + tasksPerPage;
-	const currentTasks = tasks.slice(startIndex, endIndex);
+	const currentTasks = tasks?.slice(startIndex, endIndex);
+	console.log(tasks);
 	const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
 	const handleNextPage = () => {
@@ -33,18 +39,18 @@ export default function TasksTable({ tasks: initialTasks }: { tasks: Task[] }) {
 		}
 	};
 
-	const handleStatusChange = (
-		taskId: string,
-		newStatus: 'open' | 'completed' | 'overdue'
-	) => {
-		setTasks((prevTasks) =>
-			prevTasks.map((task) =>
-				task.id === taskId ? { ...task, status: newStatus } : task
-			)
-		);
-		console.log(`Task ${taskId} status changed to ${newStatus}`);
-		// In a real application, you would likely make an API call here to update the status on the server.
-	};
+	// const handleStatusChange = (
+	// 	taskId: string,
+	// 	newStatus: 'open' | 'completed' | 'overdue'
+	// ) => {
+	// 	setTasks((prevTasks) =>
+	// 		prevTasks.map((task) =>
+	// 			task.taskId === taskId ? { ...task, status: newStatus } : task
+	// 		)
+	// 	);
+	// 	console.log(`Task ${taskId} status changed to ${newStatus}`);
+	// 	// In a real application, you would likely make an API call here to update the status on the server.
+	// };
 
 	const handleActionClick = (action: string, taskId: string) => {
 		console.log(`${action} for task ${taskId}`);
@@ -98,9 +104,9 @@ export default function TasksTable({ tasks: initialTasks }: { tasks: Task[] }) {
 						<tbody>
 							{currentTasks.map((task) => (
 								<TaskTableRow
-									key={task.id}
+									key={task.taskId}
 									task={task}
-									onStatusChange={handleStatusChange}
+									// onStatusChange={handleStatusChange}
 									onAction={handleActionClick}
 								/>
 							))}

@@ -5,14 +5,15 @@ export interface Assignee {
 }
 
 export interface Task {
-	id: string;
+	taskId: string;
 	name: string;
 	description: string;
 	status: string;
 	deadline: Date;
-	responsibility: Assignee;
+	responsibility: string;
+	taskOwner: Assignee;
 	completed_at: number | null;
-	user_comment: string[];
+	userComment: string;
 }
 
 export interface TaskStatusBadgeProps {

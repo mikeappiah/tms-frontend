@@ -15,16 +15,16 @@ import { FaClockRotateLeft } from 'react-icons/fa6';
 
 interface TaskTableRowProps {
 	task: Task;
-	onStatusChange: (
-		taskId: string,
-		newStatus: 'open' | 'completed' | 'overdue'
-	) => void;
+	// onStatusChange: (
+	// 	taskId: string,
+	// 	newStatus: 'open' | 'completed' | 'overdue'
+	// ) => void;
 	onAction: (action: string, taskId: string) => void;
 }
 
 export default function TaskTableRow({
 	task,
-	onStatusChange,
+	// onStatusChange,
 	onAction
 }: TaskTableRowProps) {
 	const Icon = getStatusIcon(task.status);
@@ -63,6 +63,7 @@ export default function TaskTableRow({
 			</td>
 			<td className='p-2 sm:p-3 text-gray-600 text-xs hidden md:table-cell'>
 				{formatDate(task.deadline)}
+				{/* {task.deadline.toLocaleDateString('en-US', {})} */}
 			</td>
 			<td className='p-2 sm:p-3 table-cell'>
 				<DropdownMenu>
@@ -80,18 +81,20 @@ export default function TaskTableRow({
 						</Badge>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent className='p-0'>
-						<DropdownMenuItem onSelect={() => onStatusChange(task.id, 'open')}>
+						<DropdownMenuItem
+						// onSelect={() => onStatusChange(task.taskId, 'open')}
+						>
 							{getStatusIconForDropdown('open')}
 							<span className='text-xs font-medium'>Open</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem
-							onSelect={() => onStatusChange(task.id, 'completed')}
+						// onSelect={() => onStatusChange(task.taskId, 'completed')}
 						>
 							{getStatusIconForDropdown('completed')}
 							<span className='text-xs font-medium'>Completed</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem
-							onSelect={() => onStatusChange(task.id, 'overdue')}
+						// onSelect={() => onStatusChange(task.taskId, 'overdue')}
 						>
 							{getStatusIconForDropdown('overdue')}
 							<span className='text-xs font-medium'>Overdue</span>
@@ -109,7 +112,7 @@ export default function TaskTableRow({
 					<DropdownMenuContent align='end'>
 						<DropdownMenuItem
 							className='text-xs!'
-							onClick={() => onAction('comment', task.id)}
+							onClick={() => onAction('comment', task.taskId)}
 						>
 							Comment
 						</DropdownMenuItem>

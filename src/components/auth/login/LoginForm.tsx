@@ -2,11 +2,11 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import FormGroup from '@/components/FormGroup';
-import { LoginCredentials, LoginResponse } from '@/interfaces/auth';
+import { LoginCredentials } from '@/interfaces/auth';
+import axios from 'axios';
 
 const inputClasses =
 	'rounded-[2px] shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
@@ -34,14 +34,20 @@ export default function LoginForm() {
 
 		try {
 			const response = await axios.post(
-				'https://9buy272svi.execute-api.eu-central-1.amazonaws.com/test/signin',
-				JSON.stringify({ username: email, password } as LoginCredentials)
+				'/api/auth/login',
+				{ username: email, password } as LoginCredentials,
+				{
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					withCredentials: true
+				}
 			);
 
-			const data: LoginResponse = response.data;
+			const data = response.data;
 
-			if (data.token) {
-				switch (data.user?.role) {
+			if (data.user?.role) {
+				switch (data.user.role) {
 					case 'admin':
 						router.push('/admin');
 						break;
@@ -52,13 +58,12 @@ export default function LoginForm() {
 						setErrorMessage('Invalid user role.');
 						return;
 				}
-			}
-			if (data.challenge === 'NEW_PASSWORD_REQUIRED') {
-				localStorage.setItem('session', data.session!);
+			} else if (data.challenge === 'NEW_PASSWORD_REQUIRED') {
 				router.push('/auth/reset-password');
 			}
 		} catch (error) {
 			console.error('Login error:', error);
+			setErrorMessage('An unexpected error occurred.');
 		} finally {
 			setIsLoading(false);
 		}
