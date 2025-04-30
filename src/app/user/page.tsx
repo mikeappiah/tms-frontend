@@ -6,7 +6,6 @@ import { FaClockRotateLeft } from 'react-icons/fa6';
 import { useTaskContext } from '@/context/taskContext';
 
 import MetricCard from '@/components/user/dashboard/MetricCard';
-// import Notifications from '@/components/user/dashboard/Notifications';
 import { FaTasks } from 'react-icons/fa';
 import { PageHeader } from '@/components/header';
 
@@ -58,7 +57,6 @@ export default function Dashboard() {
 
 			<div className='mt-4'>
 				<TasksTable />
-				{/* <Notifications /> */}
 			</div>
 		</div>
 	);

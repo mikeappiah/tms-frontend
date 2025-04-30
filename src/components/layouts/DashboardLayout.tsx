@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import AppSidebar from '@/components/navigation/AppSidebar';
 import { IconType } from 'react-icons';
 import { TaskProvider } from '@/context/taskContext';
+import { UserProvider } from '@/context/userContext';
 
 type SidebarItem = {
 	title: string;
@@ -22,13 +23,15 @@ export default function DashboardLayout({
 }: Readonly<DashboardLayoutProps>) {
 	return (
 		<TaskProvider>
-			<SidebarProvider>
-				<AppSidebar items={items} />
-				<main className='w-full'>
-					<SidebarTrigger className='hover:bg-transparent hover:text-[#5153FF]' />
-					<div className='px-5 py-10'>{children}</div>
-				</main>
-			</SidebarProvider>
+			<UserProvider>
+				<SidebarProvider>
+					<AppSidebar items={items} />
+					<main className='w-full'>
+						<SidebarTrigger className='hover:bg-transparent hover:text-[#5153FF]' />
+						<div className='px-5 py-10'>{children}</div>
+					</main>
+				</SidebarProvider>
+			</UserProvider>
 		</TaskProvider>
 	);
 }

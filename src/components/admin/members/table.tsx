@@ -24,15 +24,16 @@ import {
 } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { CreateMemberDialog } from './create-dialog';
-import membersData from '@/data/membersData';
+import { useUserContext } from '@/context/userContext';
 
 export function MembersTable() {
+	const { users } = useUserContext();
 	const [page, setPage] = useState(1);
 	const [isDialogOpen, setIsDialogOpen] = useState(false);
 	const itemsPerPage = 5;
-	const totalPages = Math.ceil(membersData.length / itemsPerPage);
+	const totalPages = Math.ceil(users.length / itemsPerPage);
 
-	const paginatedMembers = membersData.slice(
+	const paginatedMembers = users.slice(
 		(page - 1) * itemsPerPage,
 		page * itemsPerPage
 	);
@@ -53,7 +54,7 @@ export function MembersTable() {
 		<div className='space-y-4'>
 			<div className='flex justify-between items-center'>
 				<div className='text-sm text-muted-foreground'>
-					Showing {paginatedMembers.length} of {membersData.length} members
+					Showing {paginatedMembers.length} of {users.length} members
 				</div>
 				<Button
 					onClick={() => setIsDialogOpen(true)}
@@ -80,14 +81,11 @@ export function MembersTable() {
 					</TableHeader>
 					<TableBody className='bg-white'>
 						{paginatedMembers.map((member) => (
-							<TableRow key={member.id}>
+							<TableRow key={member.userId}>
 								<TableCell className='font-medium'>
 									<div className='flex items-center gap-3'>
 										<Avatar>
-											<AvatarImage
-												src={member.avatarUrl || '/placeholder.svg'}
-												alt={member.name}
-											/>
+											<AvatarImage src={'/placeholder.svg'} alt={member.name} />
 											<AvatarFallback>
 												{member.name.substring(0, 2).toUpperCase()}
 											</AvatarFallback>

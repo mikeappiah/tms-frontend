@@ -57,14 +57,14 @@ export default function TaskTableRow({ task, onAction }: TaskTableRowProps) {
 			</td>
 			<td className='p-2 sm:p-3'>
 				<div className='flex items-center justify-center'>
-					<Avatar key={task.responsibility.userId} className='h-8 w-8'>
+					<Avatar key={task.taskOwner.userId} className='h-8 w-8'>
 						<AvatarImage
-							src={`/images/${task.responsibility.avatar}`}
-							alt={task.responsibility.name}
+							src={`/images/`}
+							alt={task.taskOwner.name}
 							className='bg-indigo-100'
 						/>
 						<AvatarFallback className={`bg-red-100 text-[8px] text-red-800`}>
-							{getInitials(task.responsibility.name)}
+							{getInitials(task.taskOwner.name)}
 						</AvatarFallback>
 					</Avatar>
 				</div>
@@ -79,13 +79,13 @@ export default function TaskTableRow({ task, onAction }: TaskTableRowProps) {
 					<DropdownMenuContent align='end'>
 						<DropdownMenuItem
 							className='text-xs!'
-							onClick={() => onAction('comment', task.id)}
+							onClick={() => onAction('edit', task.taskId)}
 						>
 							<span>Edit</span>
 						</DropdownMenuItem>
 						<DropdownMenuItem
 							className='text-xs!'
-							onClick={() => onAction('comment', task.id)}
+							onClick={() => onAction('delete', task.taskId)}
 						>
 							Delete
 						</DropdownMenuItem>

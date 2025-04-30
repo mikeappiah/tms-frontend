@@ -91,7 +91,7 @@ export default function TaskListView({ tasks }: { tasks: Task[] }) {
 						<tbody>
 							{currentTasks.map((task) => (
 								<TaskTableRow
-									key={task.id}
+									key={task.taskId}
 									task={task}
 									onAction={handleActionClick}
 								/>

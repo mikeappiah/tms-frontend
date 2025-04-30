@@ -1,9 +1,7 @@
-import { Button } from '@/components/ui/button';
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
-	DialogFooter,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger
@@ -15,9 +13,6 @@ import TaskForm from './TaskForm';
 
 const inputClasses =
 	'rounded-[2px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
-
-const buttonClasses =
-	'bg-[#5153FF] hover:bg-[#4649db] rounded-[2px] cursor-pointer';
 
 export default function CreateTaskDialog({
 	children
@@ -39,12 +34,6 @@ export default function CreateTaskDialog({
 						<TaskForm inputClasses={inputClasses} />
 					</div>
 				</ScrollArea>
-
-				<DialogFooter>
-					<Button type='submit' className={buttonClasses}>
-						Create
-					</Button>
-				</DialogFooter>
 			</DialogContent>
 		</Dialog>
 	);

@@ -49,19 +49,17 @@ export default function TaskCard({ task }: { task: Task }) {
 				<div className='flex'>
 					<Avatar className='w-10 h-10'>
 						<AvatarImage
-							src={`/images/${task.responsibility.avatar}`}
-							alt={task.responsibility.name}
+							src={`/images/`}
+							alt={task.taskOwner.name}
 							className={`bg-[${statusColor}] group-hover:bg-white rounded-full`}
 						/>
-						<AvatarFallback>
-							{getInitials(task.responsibility.name)}
-						</AvatarFallback>
+						<AvatarFallback>{getInitials(task.taskOwner.name)}</AvatarFallback>
 					</Avatar>
 				</div>
 				<div>
 					<div className='flex items-center space-x-1 font-medium text-[#7A7B88] group-hover:text-white'>
 						<FaRegCommentDots />
-						<span>{task.user_comment.length || 5} </span>
+						<span>1 </span>
 					</div>
 				</div>
 			</div>

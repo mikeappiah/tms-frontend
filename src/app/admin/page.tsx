@@ -25,14 +25,18 @@ export default function Dashboard() {
 				/>
 				<MetricCard
 					title='Opened Tasks'
-					value='300'
+					value={tasks
+						.filter((task) => task.status === 'open')
+						.length.toString()}
 					icon={<RiHourglass2Fill className='h-4 w-4 text-indigo-400' />}
 					iconBg='bg-white'
 					bgColor='bg-linear-to-r from-cyan-400 via-blue-400 to-indigo-400'
 				/>
 				<MetricCard
 					title='Completed Tasks'
-					value='1500'
+					value={tasks
+						.filter((task) => task.status === 'overdue')
+						.length.toString()}
 					icon={
 						<IoMdCheckmarkCircleOutline className='h-4 w-4 text-teal-500' />
 					}
@@ -41,7 +45,9 @@ export default function Dashboard() {
 				/>
 				<MetricCard
 					title='Overdue Tasks'
-					value='200'
+					value={tasks
+						.filter((task) => task.status === 'overdue')
+						.length.toString()}
 					icon={<FaClockRotateLeft className='h-4 w-4 text-red-700' />}
 					iconBg='bg-white'
 					bgColor='bg-gradient-to-r from-red-400 to-red-700'

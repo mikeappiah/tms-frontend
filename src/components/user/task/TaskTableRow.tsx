@@ -80,7 +80,7 @@ export default function TaskTableRow({
 							{task.status}
 						</Badge>
 					</DropdownMenuTrigger>
-					{task.status === 'open' && (
+					{task.status === 'openg' && (
 						<DropdownMenuContent className='p-0'>
 							<DropdownMenuItem
 

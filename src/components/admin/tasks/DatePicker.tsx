@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
@@ -13,9 +12,13 @@ import {
 	PopoverTrigger
 } from '@/components/ui/popover';
 
-export default function DatePicker() {
-	const [date, setDate] = useState<Date>();
-
+export default function DatePicker({
+	deadline,
+	setDeadline
+}: {
+	deadline: Date | undefined;
+	setDeadline: (date: Date) => void;
+}) {
 	return (
 		<Popover>
 			<PopoverTrigger asChild>
@@ -23,18 +26,22 @@ export default function DatePicker() {
 					variant={'outline'}
 					className={cn(
 						'w-full hover:text-muted-foreground justify-start text-left font-normal',
-						!date && 'text-muted-foreground'
+						!deadline && 'text-muted-foreground'
 					)}
 				>
 					<CalendarIcon />
-					{date ? format(date, 'PPP') : <span>Select task deadline</span>}
+					{deadline ? (
+						format(deadline, 'PPP')
+					) : (
+						<span>Select task deadline</span>
+					)}
 				</Button>
 			</PopoverTrigger>
 			<PopoverContent className='w-auto p-0' align='start'>
 				<Calendar
 					mode='single'
-					selected={date}
-					onSelect={setDate}
+					selected={deadline || undefined}
+					onSelect={(date) => date && setDeadline(date)}
 					initialFocus
 					className='bg-transparent'
 				/>

@@ -24,7 +24,6 @@ export default function TasksTable({
 	const startIndex = (currentPage - 1) * tasksPerPage;
 	const endIndex = startIndex + tasksPerPage;
 	const currentTasks = tasks?.slice(startIndex, endIndex);
-	console.log(tasks);
 	const totalPages = Math.ceil(tasks.length / tasksPerPage);
 
 	const handleNextPage = () => {
