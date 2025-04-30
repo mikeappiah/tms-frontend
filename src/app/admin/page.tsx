@@ -6,18 +6,19 @@ import { FaClockRotateLeft } from 'react-icons/fa6';
 
 import TaskBarChart from '@/components/admin/dashboard/TaskBarChart';
 import MetricCard from '@/components/admin/dashboard/MetricCard';
-import Notifications from '@/components/admin/dashboard/Notifications';
 import { FaTasks } from 'react-icons/fa';
 import { PageHeader } from '@/components/header';
+import { useTaskContext } from '@/context/taskContext';
 
 export default function Dashboard() {
+	const { tasks } = useTaskContext();
 	return (
 		<div className='min-h-screen bg-transparent'>
 			<PageHeader title='Dashboard' />
 			<div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-5'>
 				<MetricCard
 					title='Total Tasks'
-					value='2000'
+					value={tasks.length.toString()}
 					icon={<FaTasks className='h-4 w-4 text-slate-800' />}
 					iconBg='bg-white'
 					bgColor='bg-gradient-to-r from-slate-500 to-slate-800'
@@ -49,7 +50,7 @@ export default function Dashboard() {
 
 			<div className='grid grid-cols-1 lg:grid-cols-5 gap-4 mt-4'>
 				<TaskBarChart />
-				<Notifications />
+				{/* <Notifications /> */}
 			</div>
 		</div>
 	);

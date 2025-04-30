@@ -2,7 +2,6 @@
 
 import { MdDashboard } from 'react-icons/md';
 import { FaTasks } from 'react-icons/fa';
-import { IoMdNotifications } from 'react-icons/io';
 import { HiUser } from 'react-icons/hi2';
 
 import DashboardLayout from '@/components/layouts/DashboardLayout';
@@ -22,11 +21,6 @@ const adminItems = [
 		title: 'tasks',
 		url: '/admin/tasks',
 		icon: FaTasks
-	},
-	{
-		title: 'notifications',
-		url: '/admin/notifications',
-		icon: IoMdNotifications
 	}
 ];
 

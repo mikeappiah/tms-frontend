@@ -1,8 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import tasksData from '@/data/tasksData';
-// import axios from 'axios';
+import { useTaskContext } from '@/context/taskContext';
 
 import { Button } from '@/components/ui/button';
 import { IoMdAdd } from 'react-icons/io';
@@ -14,6 +13,7 @@ import CreateTaskDialog from '@/components/admin/tasks/CreateTaskDialog';
 import { PageHeader } from '@/components/header';
 
 export default function Tasks() {
+	const { tasks } = useTaskContext();
 	const [currentView, setCurrentView] = useState<'board' | 'list'>('board');
 
 	const handleViewChange = (view: 'board' | 'list') => {
@@ -22,11 +22,9 @@ export default function Tasks() {
 
 	useEffect(() => {}, []);
 
-	const openTasks = tasksData.filter((task) => task.status === 'open');
-	const completedTasks = tasksData.filter(
-		(task) => task.status === 'completed'
-	);
-	const overdueTasks = tasksData.filter((task) => task.status === 'overdue');
+	const openTasks = tasks.filter((task) => task.status === 'open');
+	const completedTasks = tasks.filter((task) => task.status === 'completed');
+	const overdueTasks = tasks.filter((task) => task.status === 'overdue');
 
 	return (
 		<div>
@@ -55,7 +53,7 @@ export default function Tasks() {
 							<TaskStatusBadge status='open' count={openTasks.length} />
 							<div className='space-y-5'>
 								{openTasks.map((task) => (
-									<TaskCard key={task.id} task={task} />
+									<TaskCard key={task.taskId} task={task} />
 								))}
 							</div>
 						</div>
@@ -66,7 +64,7 @@ export default function Tasks() {
 							/>
 							<div className='space-y-5'>
 								{completedTasks.map((task) => (
-									<TaskCard key={task.id} task={task} />
+									<TaskCard key={task.taskId} task={task} />
 								))}
 							</div>
 						</div>
@@ -74,13 +72,13 @@ export default function Tasks() {
 							<TaskStatusBadge status='overdue' count={overdueTasks.length} />
 							<div className='space-y-5'>
 								{overdueTasks.map((task) => (
-									<TaskCard key={task.id} task={task} />
+									<TaskCard key={task.taskId} task={task} />
 								))}
 							</div>
 						</div>
 					</div>
 				)}
-				{currentView === 'list' && <TaskListView tasks={tasksData} />}
+				{currentView === 'list' && <TaskListView tasks={tasks} />}
 			</div>
 		</div>
 	);

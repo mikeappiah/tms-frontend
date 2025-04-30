@@ -80,26 +80,17 @@ export default function TaskTableRow({
 							{task.status}
 						</Badge>
 					</DropdownMenuTrigger>
-					<DropdownMenuContent className='p-0'>
-						<DropdownMenuItem
-						// onSelect={() => onStatusChange(task.taskId, 'open')}
-						>
-							{getStatusIconForDropdown('open')}
-							<span className='text-xs font-medium'>Open</span>
-						</DropdownMenuItem>
-						<DropdownMenuItem
-						// onSelect={() => onStatusChange(task.taskId, 'completed')}
-						>
-							{getStatusIconForDropdown('completed')}
-							<span className='text-xs font-medium'>Completed</span>
-						</DropdownMenuItem>
-						<DropdownMenuItem
-						// onSelect={() => onStatusChange(task.taskId, 'overdue')}
-						>
-							{getStatusIconForDropdown('overdue')}
-							<span className='text-xs font-medium'>Overdue</span>
-						</DropdownMenuItem>
-					</DropdownMenuContent>
+					{task.status === 'open' && (
+						<DropdownMenuContent className='p-0'>
+							<DropdownMenuItem
+
+							// onSelect={() => onStatusChange(task.taskId, 'completed')}
+							>
+								{getStatusIconForDropdown('completed')}
+								<span className='text-xs font-medium'>Completed</span>
+							</DropdownMenuItem>
+						</DropdownMenuContent>
+					)}
 				</DropdownMenu>
 			</td>
 			<td className='p-2 sm:p-3 text-right'>

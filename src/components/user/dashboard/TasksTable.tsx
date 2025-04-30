@@ -9,11 +9,13 @@ import {
 	TableRow
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import tasksData from '@/data/tasksData';
 import formatDate from '@/utils/formatDate';
+import { useTaskContext } from '@/context/taskContext';
 
 export default function TasksTable() {
-	const tasks = tasksData.slice(0, 5);
+	const { tasks } = useTaskContext();
+
+	const tasksData = tasks.slice(0, 5);
 
 	const getBadgeStyle = (status: string) => {
 		switch (status) {
@@ -40,9 +42,9 @@ export default function TasksTable() {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					{tasks.map((task) => (
-						<TableRow key={task.id}>
-							<TableCell className='font-medium'>{task.id}</TableCell>
+					{tasksData.map((task) => (
+						<TableRow key={task.taskId}>
+							<TableCell className='font-medium'>{task.taskId}</TableCell>
 							<TableCell>{task.name}</TableCell>
 							<TableCell>{formatDate(task.deadline)}</TableCell>
 							<TableCell>
