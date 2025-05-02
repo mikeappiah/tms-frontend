@@ -1,27 +1,27 @@
 import {
 	Sheet,
-	SheetClose,
 	SheetContent,
 	SheetDescription,
 	SheetTrigger
 } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Task } from '@/interfaces/tasks';
 
-import TaskForm from './TaskForm';
+import EditTaskForm from './EditTaskForm';
 import CommentsSection from './CommentSection';
 
 const inputClasses =
 	'rounded-[2px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
 
-const buttonClasses =
-	'w-full bg-[#5153FF] hover:bg-[#4649db] rounded-[2px] cursor-pointer';
-
 interface EditTaskDialogProps {
+	task: Task;
 	children: React.ReactNode;
 }
 
-export default function EditTaskDialog({ children }: EditTaskDialogProps) {
+export default function EditTaskDialog({
+	task,
+	children
+}: EditTaskDialogProps) {
 	return (
 		<Sheet>
 			<SheetTrigger asChild>{children}</SheetTrigger>
@@ -29,19 +29,14 @@ export default function EditTaskDialog({ children }: EditTaskDialogProps) {
 				<SheetDescription>
 					<ScrollArea className='h-[500px]'>
 						<div className='space-y-10 px-3'>
-							<TaskForm inputClasses={inputClasses} />
-							<CommentsSection />
+							<EditTaskForm task={task} inputClasses={inputClasses} />
+							<CommentsSection
+								assignee={task.taskOwner.name}
+								comment={task.userComment}
+							/>
 						</div>
 					</ScrollArea>
 				</SheetDescription>
-
-				<SheetClose asChild>
-					<div className='px-3'>
-						<Button type='submit' className={buttonClasses}>
-							Save
-						</Button>
-					</div>
-				</SheetClose>
 			</SheetContent>
 		</Sheet>
 	);

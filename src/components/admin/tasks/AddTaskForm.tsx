@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useUserContext } from '@/context/userContext';
-// import { useRouter } from 'next/navigation';
 import { Textarea } from '@/components/ui/textarea';
 import { Input } from '@/components/ui/input';
 import {
@@ -18,14 +17,12 @@ import FormGroup from '@/components/FormGroup';
 import DatePicker from './DatePicker';
 import axios from 'axios';
 
-interface TaskFormProps {
-	inputClasses: string;
-}
+const inputClasses =
+	'rounded-[2px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
 const buttonClasses =
 	'bg-[#5153FF] hover:bg-[#4649db] rounded-[2px] cursor-pointer';
 
-export default function TaskForm({ inputClasses }: TaskFormProps) {
-	// const router = useRouter();
+export default function AddTaskForm() {
 	const { users } = useUserContext();
 
 	const [name, setName] = useState('');
@@ -41,8 +38,6 @@ export default function TaskForm({ inputClasses }: TaskFormProps) {
 		setErrorMessage('');
 		setIsLoading(true);
 
-		console.log(user);
-
 		if (!name || !deadline || !user || !description) {
 			setErrorMessage('Please fill in all required fields.');
 			setIsLoading(false);
@@ -56,7 +51,6 @@ export default function TaskForm({ inputClasses }: TaskFormProps) {
 			deadline,
 			status
 		};
-		console.log(taskData);
 
 		try {
 			await axios.post('/api/tasks', taskData, {

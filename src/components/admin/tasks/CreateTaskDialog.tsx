@@ -9,10 +9,7 @@ import {
 
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-import TaskForm from './TaskForm';
-
-const inputClasses =
-	'rounded-[2px] col-span-3 shadow-none px-3 py-2 text-[#232526] focus-visible:border-0 focus-visible:ring-[#5153FF] focus-visible:ring-2';
+import AddTaskForm from './AddTaskForm';
 
 export default function CreateTaskDialog({
 	children
@@ -31,7 +28,7 @@ export default function CreateTaskDialog({
 				</DialogHeader>
 				<ScrollArea className='h-[200px]'>
 					<div className='p-4'>
-						<TaskForm inputClasses={inputClasses} />
+						<AddTaskForm />
 					</div>
 				</ScrollArea>
 			</DialogContent>

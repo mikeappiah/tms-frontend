@@ -1,29 +1,29 @@
-import CommentList from './CommentList';
+import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
+import getInitials from '@/utils/getInitials';
 
-export default function CommentsSection() {
-	const commentsData = [
-		{
-			name: 'Michael Appiah',
-			avatarSrc: '/images/user1.png',
-			fallbackText: 'MA',
-			timestamp: '25 April 2025 - 2:15pm',
-			content:
-				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-		},
-		{
-			name: 'Emmanuel Asidigbe',
-			avatarSrc: '/images/user2.png',
-			fallbackText: 'EA',
-			timestamp: '24 April 2025 - 5:15pm',
-			content:
-				"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
-		}
-	];
-
+export default function CommentsSection({
+	assignee,
+	comment
+}: {
+	assignee: string;
+	comment: string;
+}) {
 	return (
 		<div className='flex flex-col space-y-4 text-[#232526]'>
 			<h3 className='text-lg'>Comments</h3>
-			<CommentList comments={commentsData} />
+			<div className='space-y-3'>
+				<div className='flex items-center space-x-8'>
+					<div className='flex items-center space-x-3'>
+						<Avatar className='w-7 h-7 bg-blue-300'>
+							<AvatarImage src='/images/user1.png' />
+							<AvatarFallback>{getInitials(assignee)}</AvatarFallback>
+						</Avatar>
+					</div>
+				</div>
+				<div className='text-[#7A7B88]'>
+					<p>{comment}</p>
+				</div>
+			</div>
 		</div>
 	);
 }

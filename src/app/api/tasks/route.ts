@@ -78,3 +78,86 @@ export async function POST(request: Request) {
 		);
 	}
 }
+export async function PUT(
+	request: Request,
+	{ params }: { params: { id: string } }
+) {
+	try {
+		const cookieStore = await cookies();
+		const token = cookieStore.get('token')?.value;
+		const taskId = params.id;
+
+		console.log(taskId);
+
+		if (!token) {
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+		}
+
+		const body = await request.json();
+
+		const apiResponse = await axios.put(
+			`https://9buy272svi.execute-api.eu-central-1.amazonaws.com/test/tasks/${taskId}`,
+			body,
+			{
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`
+				}
+			}
+		);
+
+		return NextResponse.json(apiResponse.data, { status: apiResponse.status });
+	} catch (error) {
+		console.error('API error:', error);
+		const errorMessage =
+			error instanceof Error ? error.message : 'An unknown error occurred';
+		const errorStatus =
+			axios.isAxiosError(error) && error.response ? error.response.status : 500;
+		return NextResponse.json(
+			{ error: errorMessage },
+			{
+				status: errorStatus,
+				headers: { 'Content-Type': 'application/json' }
+			}
+		);
+	}
+}
+
+export async function DELETE(
+	request: Request,
+	{ params }: { params: { id: string } }
+) {
+	try {
+		const cookieStore = await cookies();
+		const token = cookieStore.get('token')?.value;
+		const taskId = params.id;
+
+		if (!token) {
+			return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+		}
+
+		const apiResponse = await axios.delete(
+			`https://9buy272svi.execute-api.eu-central-1.amazonaws.com/test/tasks/${taskId}`,
+			{
+				headers: {
+					Authorization: `Bearer ${token}`
+				}
+			}
+		);
+
+		return NextResponse.json(apiResponse.data, { status: apiResponse.status });
+	} catch (error) {
+		console.error('API error:', error);
+		const errorMessage =
+			error instanceof Error ? error.message : 'An unknown error occurred';
+		const errorStatus =
+			axios.isAxiosError(error) && error.response ? error.response.status : 500;
+		return NextResponse.json(
+			{ error: errorMessage },
+			{
+				status: errorStatus,
+				headers: { 'Content-Type': 'application/json' }
+			}
+		);
+	}
+}
