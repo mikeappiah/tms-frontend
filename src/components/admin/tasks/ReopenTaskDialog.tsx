@@ -4,11 +4,9 @@ import {
   SheetDescription,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Task } from "@/interfaces/tasks";
 
-import EditTaskForm from "./EditTaskForm";
-import CommentsSection from "./CommentSection";
+import ReOpenTaskForm from "./ReopenTaskForm";
 import { useState } from "react";
 
 const inputClasses =
@@ -19,7 +17,7 @@ interface EditTaskDialogProps {
   children: React.ReactNode;
 }
 
-export default function EditTaskDialog({
+export default function ReOpenTaskDialog({
   task,
   children,
 }: Readonly<EditTaskDialogProps>) {
@@ -32,19 +30,13 @@ export default function EditTaskDialog({
       <SheetTrigger asChild>{children}</SheetTrigger>
       <SheetContent className="text-[#232526] py-5">
         <SheetDescription>
-          <ScrollArea className="h-[500px]">
-            <div className="space-y-10 px-3">
-              <EditTaskForm
-                handleOpenChange={handleOpenChange}
-                task={task}
-                inputClasses={inputClasses}
-              />
-              <CommentsSection
-                assignee={task.taskOwner.name}
-                comment={task.userComment}
-              />
-            </div>
-          </ScrollArea>
+          <div className="space-y-10 px-3">
+            <ReOpenTaskForm
+              handleOpenChange={handleOpenChange}
+              task={task}
+              inputClasses={inputClasses}
+            />
+          </div>
         </SheetDescription>
       </SheetContent>
     </Sheet>
