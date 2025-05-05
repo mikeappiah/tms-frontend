@@ -1,43 +1,41 @@
-import { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import { createContext, useState, useContext } from "react";
+import axios from "axios";
+import useSWR from "swr";
 
-import { Task } from '@/interfaces/tasks';
+import { Task } from "@/interfaces/tasks";
 
 const TaskContext = createContext<{
-	tasks: Task[];
-	setTasks: (tasks: Task[]) => void;
+  tasks: Task[];
+  isLoading: boolean;
+  error: unknown | null;
+  setTasks: (tasks: Task[]) => void;
 }>({
-	tasks: [],
-	setTasks: () => {}
+  tasks: [],
+  setTasks: () => {},
+  isLoading: false,
+  error: null,
 });
 
-function TaskProvider({ children }: { children: React.ReactNode }) {
-	const [tasks, setTasks] = useState<Task[]>([]);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data.tasks);
 
-	useEffect(() => {
-		const fetchTasks = async () => {
-			try {
-				const response = await axios.get('/api/tasks');
-				setTasks(response.data.tasks);
-			} catch (err) {
-				console.error('Error fetching tasks:', err);
-			}
-		};
+function TaskProvider({ children }: Readonly<{ children: React.ReactNode }>) {
+  const [tasks, setTasks] = useState<Task[]>([]);
 
-		fetchTasks();
-	}, []);
+  const { error, isLoading } = useSWR("/api/tasks", fetcher, {
+    onSuccess: (data) => setTasks(data),
+  });
 
-	return (
-		<TaskContext.Provider value={{ tasks, setTasks }}>
-			{children}
-		</TaskContext.Provider>
-	);
+  return (
+    <TaskContext.Provider value={{ tasks, setTasks, isLoading, error }}>
+      {children}
+    </TaskContext.Provider>
+  );
 }
 function useTaskContext() {
-	const context = useContext(TaskContext);
-	if (!context) {
-		throw new Error('useTaskContext must be used within a TaskProvider');
-	}
-	return context;
+  const context = useContext(TaskContext);
+  if (!context) {
+    throw new Error("useTaskContext must be used within a TaskProvider");
+  }
+  return context;
 }
 export { TaskProvider, useTaskContext };

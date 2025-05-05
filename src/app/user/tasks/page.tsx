@@ -1,30 +1,35 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Task } from '@/interfaces/tasks';
-// import tasksData from '@/data/tasksData';
-import TasksTable from './TasksTable';
+import { useTaskContext } from "@/context/taskContext";
+import TasksTable from "./TasksTable";
 
 export default function Page() {
-	const [tasks, setTasks] = useState<Task[]>([]);
+  const { tasks, isLoading, error } = useTaskContext();
 
-	useEffect(() => {
-		const fetchTasks = async () => {
-			try {
-				const response = await axios.get('/api/tasks');
-				setTasks(response.data.tasks);
-			} catch (err) {
-				console.error('Error fetching tasks:', err);
-			}
-		};
-
-		fetchTasks();
-	}, []);
-
-	return (
-		<main className='h-full'>
-			<TasksTable tasks={tasks} />
-		</main>
-	);
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-full">Loading...</div>
+    );
+  }
+  if (error) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        Error loading tasks
+      </div>
+    );
+  }
+  return (
+    <main className="h-full">
+      <TasksTable
+        tasks={tasks}
+        // setTasks={(taskId, newStatus) => {
+        //   setTasks((prevTasks) =>
+        //     prevTasks.map((task) =>
+        //       task.taskId === taskId ? { ...task, status: newStatus } : task
+        //     )
+        //   );
+        // }}
+      />
+    </main>
+  );
 }
