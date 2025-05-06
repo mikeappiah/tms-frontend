@@ -27,6 +27,21 @@ export default function AppSidebar({
 }: Readonly<{ items: SidebarItem[] }>) {
   const pathname = usePathname();
 
+  async function handleLogout() {
+    const res = await fetch("/api/auth/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (res.ok) {
+      window.location.href = "/auth/login";
+    } else {
+      console.error("Logout failed");
+    }
+  }
+
   return (
     <Sidebar>
       <SidebarContent className="flex flex-col justify-between h-full">
@@ -67,7 +82,10 @@ export default function AppSidebar({
         </div>
 
         <div className="px-3 py-5">
-          <button className="flex items-center space-x-2 text-[#7A7B88] hover:text-red-500 transition-all cursor-pointer justify-start">
+          <button
+            onClick={() => handleLogout()}
+            className="flex items-center space-x-2 text-[#7A7B88] hover:text-red-500 transition-all cursor-pointer justify-start"
+          >
             <RiLogoutBoxRLine />
             <span className="text-sm">Logout</span>
           </button>
