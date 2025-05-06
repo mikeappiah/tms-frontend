@@ -113,14 +113,10 @@ export default function TaskTableRow({
       <tr className="border-b hover:bg-gray-50">
         <td className="px-4 py-3">{task.name}</td>
         <td className="px-4 py-3">
-          <textarea cols={25} className="text-xs resize-none">
-            {task.description}
-          </textarea>
+          <span className="text-xs resize-none">{task.description}</span>
         </td>
         <td className="px-4 py-3">
-          <textarea cols={15} className="text-xs resize-none">
-            {task.userComment}
-          </textarea>
+          <span className="text-xs resize-none">{task.userComment}</span>
         </td>
 
         <td className="px-4 py-3">{formatDate(task.deadline)}</td>
