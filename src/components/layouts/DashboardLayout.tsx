@@ -27,7 +27,7 @@ export default function DashboardLayout({
       <SidebarProvider>
         <AppSidebar items={items} />
         <main className="w-full">
-          <SidebarTrigger className="hover:bg-transparent hover:text-[#5153FF]" />
+          <SidebarTrigger className="hover:bg-transparent cursor-pointer hover:text-[#5153FF]" />
           <div className="px-5 py-10">{children}</div>
         </main>
       </SidebarProvider>
